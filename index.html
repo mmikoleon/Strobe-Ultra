@@ -38,24 +38,10 @@
     box-sizing: border-box;
     backdrop-filter: blur(10px);
   }
-  .hidden-controls {
-    opacity: 0;
-    pointer-events: none;
-  }
-  
-  #fullscreenBtn.floating {
-    position: fixed;
-    top: 12px;
-    right: 12px;
-    width: auto;
-    z-index: 9999;
-    padding: 10px 14px;
-    opacity: 0.7; 
-  }
-  
-  #fullscreenBtn.floating:hover {
-    opacity: 1;
-  }
+
+    .fullscreen-mode #controls > *:not(fullscreenBtn) {
+    display: none;
+  }  
 
   label {
     display: block;
@@ -553,37 +539,19 @@
     kaleidoBtn.textContent = kaleidoOn ? "Fractal Kaleidoscope (On)" : "Fractal Kaleidoscope";
   });
 
-  // Fullscreen
+   // Fullscreen
   fullscreenBtn.addEventListener("click", () => {
-      const controls =
-  document.getElementById("controls");
       if (!document.fullscreenElement) {
         //enter fllscrn
         
   document.documentElement.requestFullscreen().catch(() => {});
-        controls.classList.add("hidden-controls");
-        
-        fullscreenBtn.classList.add("floating")
-        ;
-          fullscreenBtn.textContent = "Exit Fullscreen";
+  document.body.classList.add("fullscreen-mode");
+        fullscreenBtn.textContent = "Exit Fullscreen";
       } else {
-        //ext fllscrn
-        document.exitFullscreen().catch(() => {});      
-        
+        document.exitFullscreen().catch(() => {});
       }
   });
-  document.addEventListener("fullscreenchange", () => {
-    const controls =
-  document.getElementById("controls");
-    if (!document.fullscreenElement) {
-      controls.classList.remove("hidden-controls");
-      
-  fullscreenBtn.classList.remove("floating");
-      fullscreenBtn.textContent =
-  "Fullscreen";
-    }
-  });
-
+  
   // Chaos Mode (auto‑fullscreen)
   chaosBtn.addEventListener("click", async () => {
     chaosOn = !chaosOn;
