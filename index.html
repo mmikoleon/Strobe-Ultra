@@ -28,10 +28,10 @@
   #controls {
     position: absolute;
     bottom: 10px;
-    left: 50%;
+    left: 5%;
     transform: translateX(-50%);
     width: 95%;
-    max-width: 700px;
+    max-width: 90px;
     padding: 12px;
     background: rgba(0,0,0,0.7);
     border-radius: 12px;
@@ -564,8 +564,8 @@
         controls.classList.add("hidden-controls");
         
         fullscreenBtn.classList.add("floating")
-  ;
-        fullscreenBtn.textContent = "Exit Fullscreen";
+        ;
+          fullscreenBtn.textContent = "Exit Fullscreen";
       } else {
         //ext fllscrn
         document.exitFullscreen().catch(() => {});      
@@ -575,7 +575,6 @@
   document.addEventListener("fullscreenchange", () => {
     const controls =
   document.getElementById("controls");
-    
     if (!document.fullscreenElement) {
       controls.classList.remove("hidden-controls");
       
